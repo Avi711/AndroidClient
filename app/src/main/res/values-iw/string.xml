@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">AndroidClient</string>
     <string name="greeting">שלום עולם</string>
+    <string name="login">הרשמה</string>
+    <string name="username">שם משתמש</string>
+    <string name="password">סיסמה</string>
+    <string name="register">הרשמה</string>
+    <string name="or">או</string>
+    <string name="confirm_password">אימות סיסמה</string>
+    <string name="display_name">כינוי</string>
+    <string name="logo_image">logo_image</string>
 </resources>
