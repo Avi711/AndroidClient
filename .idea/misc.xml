@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+
         <entry key="..\:/AndroidClient/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AndroidClient/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2115" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AndroidClient/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2115" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AndroidClient/app/src/main/res/drawable/rounded_shape.xml" value="0.1635" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AndroidClient/app/src/main/res/layout/activity_user.xml" value="0.33" />
+
+        <entry key="..\:/AndroidClient/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.303" />
+        <entry key="..\:/AndroidClient/app/src/main/res/drawable/ic_launcher_background.xml" value="0.303" />
+        <entry key="..\:/AndroidClient/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/AndroidClient/app/src/main/res/layout/activity_register.xml" value="0.1" />
+
       </map>
     </option>
   </component>
