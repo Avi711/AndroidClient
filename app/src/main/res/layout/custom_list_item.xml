@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    tools:context=".user">
+    tools:context=".Contact">
 
 
     <RelativeLayout
@@ -18,15 +18,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:marginVertical="10dp"
+            android:layout_marginVertical="10dp"
             android:orientation="horizontal">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginStart="20dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
                 app:civ_border_color="@color/black"
                 app:civ_border_width="1.5dp"
                 tools:src="@drawable/profile2"

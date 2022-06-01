@@ -16,6 +16,14 @@ public class MainActivity extends AppCompatActivity {
         btnMoveToRegister.setOnClickListener(p -> {
             Intent i = new Intent(this, Register.class);
             startActivity(i);
+            finish();
+        });
+
+
+        Button loginBtn = findViewById(R.id.login_Button);
+        loginBtn.setOnClickListener(p -> {
+            Intent I = new Intent(this, ContactList.class);
+            startActivity(I);
         });
     }
 }

@@ -23,13 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
-        android:background="@color/form_background"
+        android:background="@drawable/layout_bg_round"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.25">
+        app:layout_constraintVertical_bias="0.25"
+        >
 
 
         <TextView
@@ -68,12 +69,12 @@
 
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/login_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:background="@color/main_color"
+            android:background="@drawable/round_button_main_color"
             android:text="@string/login"
             />
 

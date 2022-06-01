@@ -16,6 +16,7 @@ public class Register extends AppCompatActivity {
         btnMoveToLogin.setOnClickListener(p -> {
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
+            finish();
         });
     }
 }
