@@ -5,16 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class Register extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
-        Button btnMoveToRegister = findViewById(R.id.buttonMoveToRegister);
-        btnMoveToRegister.setOnClickListener(p -> {
-            Intent i = new Intent(this, Register.class);
+        Button btnMoveToLogin = findViewById(R.id.buttonMoveToLogin);
+        btnMoveToLogin.setOnClickListener(p -> {
+            Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
         });
     }
