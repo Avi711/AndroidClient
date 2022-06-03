@@ -9,4 +9,10 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="display_name">Display Name</string>
     <string name="logo_image">logo_image</string>
+    <string name="add_contact_button">add_contact_button</string>
+    <string name="add_contact">Add contact</string>
+    <string name="contact_username">Contact username</string>
+    <string name="add">Add</string>
+    <string name="server">Server</string>
+    <string name="search">Search</string>
 </resources>

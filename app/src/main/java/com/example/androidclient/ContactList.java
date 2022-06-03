@@ -1,13 +1,21 @@
 package com.example.androidclient;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ContactList extends AppCompatActivity {
 
@@ -30,28 +38,44 @@ public class ContactList extends AppCompatActivity {
 
     ListView listView;
     CustomListAdapter adapter;
+    List<Contact> contacts;
+    private AppDB db;
+    private ContactDao contactDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_list);
+        contacts = new ArrayList<Contact>();
 
-        ArrayList<Contact> users = new ArrayList<>();
+
+
+        AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "ContactsDB")
+                .allowMainThreadQueries()
+                .build();
+        contactDao = db.contactDao();
+
+
+        FloatingActionButton go_to_add_contact_btn = findViewById(R.id.go_to_add_contact_btn);
+        go_to_add_contact_btn.setOnClickListener(view -> {
+            Intent i = new Intent(this,AddContact.class);
+            startActivity(i);
+        });
+
 
         for (int i = 0; i < profilePictures.length; i++) {
             Contact aUser = new Contact(
                     userNames[i], profilePictures[i],
                     lastMassages[i], times[i]
             );
-
-            users.add(aUser);
+            //contacts.add(aUser);
         }
 
+        contactDao = db.contactDao();
         listView = findViewById(R.id.contact_list);
-        adapter = new CustomListAdapter(getApplicationContext(), users);
-
+        adapter = new CustomListAdapter(getApplicationContext(), contacts);
         listView.setAdapter(adapter);
-        listView.setClickable(true);
+
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             Intent intent = new Intent(getApplicationContext(), Chat.class);
@@ -63,5 +87,44 @@ public class ContactList extends AppCompatActivity {
 
             startActivity(intent);
         });
+
+        listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
+            Contact contact = contacts.remove(i);
+            contactDao.delete(contact);
+            adapter.notifyDataSetChanged();
+            return true;
+        });
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        contacts.clear();
+        contacts.addAll(contactDao.index());
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Type here to search");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 }

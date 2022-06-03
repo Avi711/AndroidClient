@@ -39,45 +39,26 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center_horizontal"
-            android:text="@string/register"
+            android:text="@string/add_contact"
             android:textSize="34sp"
             android:textStyle="bold|italic" />
 
         <EditText
-            android:id="@+id/editTextUserName"
+            android:id="@+id/add_contact_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="@string/username"
-            android:autofillHints="@string/username"
+            android:hint="@string/contact_username"
+            android:autofillHints="@string/contact_username"
             android:textSize="22sp"
             android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/editTextPassword1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/white"
-            android:hint="@string/password"
-            android:autofillHints="@string/password"
-            android:textSize="22sp"
-            android:inputType="textPassword" />
-        <EditText
-            android:id="@+id/editTextPassword2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/white"
-            android:hint="@string/confirm_password"
-            android:autofillHints="@string/confirm_password"
-            android:textSize="22sp"
-            android:inputType="textPassword" />
+
 
         <EditText
-            android:id="@+id/editTextDisplayName"
+            android:id="@+id/add_contact_display_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -88,58 +69,33 @@
             android:textSize="22sp"
             android:inputType="textPersonName" />
 
+        <EditText
+            android:id="@+id/add_contact_server"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="@string/server"
+            android:autofillHints="@string/server"
+            android:textSize="22sp"
+            android:inputType="textPersonName" />
 
 
         <Button
-            android:id="@+id/register_btn"
+            android:id="@+id/add_contact_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:background="@drawable/round_button_main_color"
-            android:text="@string/register"
+            android:text="@string/add"
             />
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp">
 
-            <TextView
-                android:id="@+id/divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:text="@string/or"
-                android:textColor="#8F8F8F"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toStartOf="@id/divider"
-                android:background="#8F8F8F" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:layout_toEndOf="@id/divider"
-                android:background="#8F8F8F" />
 
-        </RelativeLayout>
 
-        <Button
-
-            android:id="@+id/buttonMoveToLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:text="@string/login" />
 
     </LinearLayout>
 

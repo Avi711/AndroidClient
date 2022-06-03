@@ -1,16 +1,25 @@
 package com.example.androidclient;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.ListView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.room.Entity;
 
-public class Contact extends AppCompatActivity {
+import android.os.Bundle;
+
+@Entity
+public class Contact {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String userName;
     private int image;
     private String lastMessage;
+    private String displayName;
+    private String server;
     private String lastMessageTime;
 
+
+    @Ignore
     public Contact(String userName, int image, String lastMessage, String lastMessageTime) {
         this.userName = userName;
         this.image = image;
@@ -18,31 +27,58 @@ public class Contact extends AppCompatActivity {
         this.lastMessageTime = lastMessageTime;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
-
-
-        //ListView listView = findViewById();
-
+    public Contact(String userName,String displayName, int image, String server) {
+        this.userName = userName;
+        this.displayName = displayName;
+        this.image = image;
+        this.lastMessage = "";
+        this.lastMessageTime = "";
+        this.server = server;
     }
 
-    public String getContactName() {
+    public String getUserName() {
         return userName;
     }
 
-    public int getImage() {
-        return image;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public String getLastMessage() {
-        return lastMessage;
+    public String getServer() {
+        return server;
     }
 
-    public String getLastMessageTime() {
-        return lastMessageTime;
+    public int getImage() { return image; }
+
+    public String getLastMessage() { return lastMessage; }
+
+    public String getLastMessageTime() { return lastMessageTime; }
+
+    public int getId() { return id; }
+
+    public void setId(int id) {this.id = id; }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
+    public void setImage(int image) {
+        this.image = image;
+    }
 
+    public void setLastMessage(String lastMessage) {
+        this.lastMessage = lastMessage;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public void setServer(String server) {
+        this.server = server;
+    }
+
+    public void setLastMessageTime(String lastMessageTime) {
+        this.lastMessageTime = lastMessageTime;
+    }
 }
