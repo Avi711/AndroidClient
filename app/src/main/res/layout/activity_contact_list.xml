@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,14 +7,39 @@
     tools:context=".ContactList">
 
 
-
-    <ListView
-        android:id="@+id/contact_list"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/custom_list_item">
-    </ListView>
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/contact_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintVertical_weight="5"
+            tools:listitem="@layout/custom_list_item"
+            android:layout_weight="1">
 
 
 
-</android.support.constraint.ConstraintLayout>
+        </ListView>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/go_to_add_contact_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add_btn"
+        android:focusable="true"
+        android:backgroundTint="@color/main_color"
+        android:tint="@color/white"
+        android:contentDescription="@string/add_contact_button"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

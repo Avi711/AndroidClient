@@ -1,8 +1,8 @@
 package com.example.androidclient;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomListAdapter extends ArrayAdapter<Contact> {
     LayoutInflater inflater;
 
-    public CustomListAdapter(Context context, ArrayList<Contact> userArrayList) {
+    public CustomListAdapter(Context context, List<Contact> userArrayList) {
         super(context, R.layout.custom_list_item, userArrayList);
 
         this.inflater = LayoutInflater.from(context);
@@ -36,12 +37,11 @@ public class CustomListAdapter extends ArrayAdapter<Contact> {
         TextView time = convertView.findViewById(R.id.time);
 
         imageView.setImageResource(user.getImage());
-        userName.setText(user.getContactName());
+        userName.setText(user.getDisplayName());
         lastMessage.setText(user.getLastMessage());
         time.setText(user.getLastMessageTime());
 
         return convertView;
     }
-
 
 }
