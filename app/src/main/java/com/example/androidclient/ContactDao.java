@@ -22,6 +22,9 @@ public interface ContactDao {
     @Insert
     void insert(Contact... contacts);
 
+    @Insert
+    void insert(List<Contact> list);
+
 
     @Update
     void update(Contact... contacts);
@@ -29,4 +32,7 @@ public interface ContactDao {
 
     @Delete
     void delete(Contact... contacts);
+
+    @Query("DELETE FROM contact")
+    void clear();
 }

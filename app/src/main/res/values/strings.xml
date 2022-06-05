@@ -15,4 +15,5 @@
     <string name="add">Add</string>
     <string name="server">Server</string>
     <string name="search">Search</string>
+    <string name="BaseUrl" translatable="false">http://10.0.2.2:7018/api/</string>
 </resources>
