@@ -18,6 +18,7 @@ public class AddContact extends AppCompatActivity {
         setContentView(R.layout.activity_add_contact);
         AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "ContactsDB")
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build();
         contactDao = db.contactDao();
 
@@ -27,7 +28,7 @@ public class AddContact extends AppCompatActivity {
                 EditText et_username = findViewById(R.id.add_contact_username);
                 EditText et_display = findViewById(R.id.add_contact_display_name);
                 EditText et_server = findViewById(R.id.add_contact_server);
-                Contact contact = new Contact(et_username.getText().toString(), et_display.getText().toString(), R.drawable.profile2, et_server.getText().toString());
+                Contact contact = new Contact(et_username.getText().toString(), et_display.getText().toString(), et_server.getText().toString());
                 contactDao.insert(contact);
                 finish();
             }

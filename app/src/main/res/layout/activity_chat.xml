@@ -11,20 +11,51 @@
 
 
 
-    <ImageView
-        android:id="@+id/user_image_profile_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="20dp"
-        tools:src="@drawable/round_button_main_color" />
 
-    <TextView
-        android:id="@+id/user_text_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="User Name"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:background="@color/main_color">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_image_profile_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="20dp"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1.5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/profile2" />
+
+        <TextView
+            android:id="@+id/user_text_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_image_profile_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="User Name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messageList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

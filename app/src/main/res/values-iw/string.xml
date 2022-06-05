@@ -10,4 +10,11 @@
     <string name="confirm_password">אימות סיסמה</string>
     <string name="display_name">כינוי</string>
     <string name="logo_image">logo_image</string>
+    <string name="add_contact_button">add_contact_button</string>
+    <string name="add_contact">הוסף איש קשר</string>
+    <string name="contact_username">שם משתמש</string>
+    <string name="add">הוסף</string>
+    <string name="server">שרת</string>
+    <string name="search">חיפוש</string>
+
 </resources>

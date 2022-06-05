@@ -6,9 +6,6 @@ import androidx.room.Room;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -50,10 +47,17 @@ public class ContactList extends AppCompatActivity {
 
 
 
+
+
         AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "ContactsDB")
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build();
         contactDao = db.contactDao();
+        contacts.addAll(contactDao.index());
+
+        ContactAPI contactAPI = new ContactAPI(null,contactDao);
+        contactAPI.get();
 
 
         FloatingActionButton go_to_add_contact_btn = findViewById(R.id.go_to_add_contact_btn);
@@ -65,13 +69,12 @@ public class ContactList extends AppCompatActivity {
 
         for (int i = 0; i < profilePictures.length; i++) {
             Contact aUser = new Contact(
-                    userNames[i], profilePictures[i],
+                    userNames[i],
                     lastMassages[i], times[i]
             );
-            //contacts.add(aUser);
+           // contacts.add(aUser);
         }
 
-        contactDao = db.contactDao();
         listView = findViewById(R.id.contact_list);
         adapter = new CustomListAdapter(getApplicationContext(), contacts);
         listView.setAdapter(adapter);
@@ -80,10 +83,11 @@ public class ContactList extends AppCompatActivity {
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             Intent intent = new Intent(getApplicationContext(), Chat.class);
 
-            intent.putExtra("userName", userNames[i]);
-            intent.putExtra("profilePicture", profilePictures[i]);
-            intent.putExtra("lastMassage", lastMassages[i]);
-            intent.putExtra("time", times[i]);
+            Contact contact = contacts.get(i);
+            intent.putExtra("userName", contact.getId());
+            //intent.putExtra("profilePicture", R.drawable.profile2);
+            intent.putExtra("lastMassage", contact.getLast());
+            intent.putExtra("time", contact.getLastdate());
 
             startActivity(intent);
         });
@@ -94,9 +98,6 @@ public class ContactList extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             return true;
         });
-
-
-
     }
 
     @Override

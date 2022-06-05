@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CustomListAdapter extends ArrayAdapter<Contact> {
@@ -36,10 +35,10 @@ public class CustomListAdapter extends ArrayAdapter<Contact> {
         TextView lastMessage = convertView.findViewById(R.id.last_message);
         TextView time = convertView.findViewById(R.id.time);
 
-        imageView.setImageResource(user.getImage());
-        userName.setText(user.getDisplayName());
-        lastMessage.setText(user.getLastMessage());
-        time.setText(user.getLastMessageTime());
+        imageView.setImageResource(R.drawable.profile2);
+        userName.setText(user.getName());
+        lastMessage.setText(user.getLast());
+        time.setText(user.getLastdate());
 
         return convertView;
     }
