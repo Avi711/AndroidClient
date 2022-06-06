@@ -2,13 +2,19 @@ package com.example.androidclient;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.example.androidclient.adapters.CustomListAdapter;
+import com.example.androidclient.dao.ContactDao;
+import com.example.androidclient.entities.Contact;
+import com.example.androidclient.viewmodels.ContactsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -38,27 +44,27 @@ public class ContactList extends AppCompatActivity {
     List<Contact> contacts;
     private AppDB db;
     private ContactDao contactDao;
+    private ContactsViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_list);
         contacts = new ArrayList<Contact>();
+        viewModel = new ViewModelProvider(this).get(ContactsViewModel.class);
 
 
+//        AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "ContactsDB")
+//                .allowMainThreadQueries()
+//                .fallbackToDestructiveMigration()
+//                .build();
+//        contactDao = db.contactDao();
+//        contacts.addAll(contactDao.index());
 
+        //ContactAPI contactAPI = new ContactAPI(null,contactDao);
+       // contactAPI.get();
 
-
-        AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "ContactsDB")
-                .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
-                .build();
-        contactDao = db.contactDao();
-        contacts.addAll(contactDao.index());
-
-        ContactAPI contactAPI = new ContactAPI(null,contactDao);
-        contactAPI.get();
-
+        //contacts.addAll(viewModel.get());
 
         FloatingActionButton go_to_add_contact_btn = findViewById(R.id.go_to_add_contact_btn);
         go_to_add_contact_btn.setOnClickListener(view -> {
@@ -79,6 +85,18 @@ public class ContactList extends AppCompatActivity {
         adapter = new CustomListAdapter(getApplicationContext(), contacts);
         listView.setAdapter(adapter);
 
+        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.contact_refresh);
+
+        swipeRefreshLayout.setOnRefreshListener(() -> { viewModel.reload(); });
+
+        viewModel.get().observe(this, contacts -> {
+            adapter.clear();
+            adapter.addAll(contacts);
+            swipeRefreshLayout.setRefreshing(false);
+        });
+
+
+
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             Intent intent = new Intent(getApplicationContext(), Chat.class);
@@ -93,9 +111,10 @@ public class ContactList extends AppCompatActivity {
         });
 
         listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
-            Contact contact = contacts.remove(i);
-            contactDao.delete(contact);
-            adapter.notifyDataSetChanged();
+            //Contact contact = contacts.remove(i);
+            //viewModel.delete(contact);
+            //contactDao.delete(contact);
+            //adapter.notifyDataSetChanged();
             return true;
         });
     }
@@ -103,9 +122,10 @@ public class ContactList extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        contacts.clear();
-        contacts.addAll(contactDao.index());
         adapter.notifyDataSetChanged();
+        //contacts.clear();
+        //contacts.addAll(contactDao.index());
+       // adapter.notifyDataSetChanged();
     }
 
     @Override

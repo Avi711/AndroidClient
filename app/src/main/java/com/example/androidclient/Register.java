@@ -30,11 +30,6 @@ public class Register extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
     public int Validate() {
         int flag = 0;
         EditText tvContact_username = findViewById(R.id.editTextUserName);

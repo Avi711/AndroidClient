@@ -1,4 +1,4 @@
-package com.example.androidclient;
+package com.example.androidclient.entities;
 
 import android.os.Build;
 
@@ -45,8 +45,6 @@ public class Contact {
     public Contact(String id,String name, String server) {
         this.id = id;
         this.name = name;
-        this.last = "";
-        this.lastdate = "";
         this.server = server;
     }
 
@@ -68,5 +66,5 @@ public class Contact {
 
     public void setServer(String server) { this.server = server; }
 
-    public void setLastdate(String lastdate) { this.lastdate = lastdate;}
+    public void setlastdate(String lastdate) { this.lastdate = lastdate;}
 }
