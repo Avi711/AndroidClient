@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
 
-
         Button loginBtn = findViewById(R.id.login_Button);
         loginBtn.setOnClickListener(p -> {
             if(Validate() == 0) {
@@ -29,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
     public int Validate() {
         int flag = 0;
         EditText tvContact_username = findViewById(R.id.login_editTextUserName);
@@ -46,5 +42,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return flag;
     }
-
 }

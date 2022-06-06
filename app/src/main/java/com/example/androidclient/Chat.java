@@ -31,8 +31,5 @@ public class Chat extends AppCompatActivity {
             profilePictureView.setImageResource(R.drawable.profile2);
             userNameView.setText(userName);
         }
-
-
-
     }
 }
