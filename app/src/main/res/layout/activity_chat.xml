@@ -54,7 +54,100 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/messageList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="16dp"
+            tools:listitem="@layout/sender_message"
+
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:backgroundTint="@drawable/chat_background"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ExtraText,MissingConstraints">
+
+
+            <EditText
+                android:id="@+id/editMsg"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/type_msg"
+                android:background="@drawable/rounded_corners_reciever"
+                android:ems="10"
+                android:hint="@string/type_msg"
+                android:inputType="textPersonName"
+                android:textSize="30sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/PlusButton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_mic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/purple_200"
+                android:clickable="true"
+                android:focusable="true"
+                android:tint="@android:color/white"
+                android:visibility="invisible"
+
+                app:layout_constraintBottom_toTopOf="@+id/PlusButton"
+                app:layout_constraintEnd_toEndOf="@+id/PlusButton"
+                app:srcCompat="@drawable/ic_baseline_mic_24"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/PlusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:backgroundTint="@color/main_color"
+                android:clickable="true"
+                android:focusable="true"
+                app:srcCompat="@drawable/ic_add_btn"
+                tools:layout_editor_absoluteX="317dp"
+                tools:layout_editor_absoluteY="767dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/purple_700"
+                android:clickable="true"
+                android:focusable="true"
+                android:tint="@android:color/white"
+                android:visibility="invisible"
+
+                app:layout_constraintBottom_toTopOf="@+id/btn_mic"
+                app:layout_constraintEnd_toEndOf="@+id/btn_mic"
+                app:srcCompat="@drawable/ic_baseline_image_24" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/light_blue"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="invisible"
+                android:tint="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/btn_pic"
+                app:layout_constraintEnd_toEndOf="@+id/btn_pic"
+                app:srcCompat="@drawable/ic_baseline_videocam_24" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

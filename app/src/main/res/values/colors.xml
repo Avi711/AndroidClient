@@ -8,8 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#F5F6F6</color>
+    <color name="gray_msg_bar">#F0F2F5</color>
     <color name="main_color">#128c7e</color>
     <color name="form_background">#f5f5f5</color>
     <color name="logo_color">#49c858</color>
+    <color name="light_blue">#00B3DF</color>
+    <color name="green">#0FFF50</color>
+    <color name="green_msg">#D9FDD3</color>
+
+
 
 </resources>

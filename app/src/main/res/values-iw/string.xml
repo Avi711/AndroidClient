@@ -16,5 +16,7 @@
     <string name="add">הוסף</string>
     <string name="server">שרת</string>
     <string name="search">חיפוש</string>
+    <string name="type_msg">הקלד הודעה...</string>
+
 
 </resources>
