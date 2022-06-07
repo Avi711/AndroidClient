@@ -15,10 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.androidclient.adapters.CustomListAdapter;
 import com.example.androidclient.adapters.MessageListAdapter;
 import com.example.androidclient.entities.Message;
-import com.example.androidclient.viewmodels.ContactsViewModel;
 import com.example.androidclient.viewmodels.MessagesViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -50,10 +48,10 @@ public class Chat extends AppCompatActivity {
         btn_video = (FloatingActionButton) findViewById(R.id.btn_video);
         PlusButton = (FloatingActionButton) findViewById(R.id.PlusButton);
         sendMessageButton = findViewById(R.id.send_message_button);
-        rotate_close_anim = AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim);
-        rotate_open_anim = AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim);
-        from_bottom_anim = AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
-        to_bottom_anim = AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim);
+        rotate_close_anim = AnimationUtils.loadAnimation(this, R.anim.rotate_backward);
+        rotate_open_anim = AnimationUtils.loadAnimation(this, R.anim.rotate_forward);
+        from_bottom_anim = AnimationUtils.loadAnimation(this, R.anim.fab_open);
+        to_bottom_anim = AnimationUtils.loadAnimation(this, R.anim.fab_close);
 
         PlusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +141,7 @@ public class Chat extends AppCompatActivity {
 
     private void animationPlus() {
         if (isOpen) {
-            PlusButton.startAnimation(rotate_close_anim);
+            PlusButton.startAnimation(rotate_open_anim);
             btn_mic.startAnimation(to_bottom_anim);
             btn_pic.startAnimation(to_bottom_anim);
             btn_video.startAnimation(to_bottom_anim);
@@ -152,7 +150,7 @@ public class Chat extends AppCompatActivity {
             btn_video.setClickable(false);
             isOpen = false;
         } else {
-            PlusButton.startAnimation(rotate_open_anim);
+            PlusButton.startAnimation(rotate_close_anim);
             btn_mic.startAnimation(from_bottom_anim);
             btn_pic.startAnimation(from_bottom_anim);
             btn_video.startAnimation(from_bottom_anim);
