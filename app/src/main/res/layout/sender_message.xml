@@ -7,8 +7,7 @@
     android:clipChildren="false"
     android:paddingBottom="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="10dp"
-android:background="@drawable/chat_background">
+    android:paddingTop="10dp">
 
     <RelativeLayout
         android:id="@+id/blank"
@@ -23,13 +22,14 @@ android:background="@drawable/chat_background">
             android:paddingRight="100dp">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/sender_message_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
+                android:textSize="20sp"
                 android:layout_marginTop="3dp"
                 android:background="@drawable/rounded_corners_sender"
-                android:paddingLeft="3dp"
+                android:paddingLeft="10dp"
                 android:text="Hello, \nhow are you ?\nhh jjjjjjyjjjj\njjjjjjjjjjjjjjjjjjjjoooooooooooooooyy\noooooooo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -42,12 +42,12 @@ android:background="@drawable/chat_background">
 
 
             <TextView
-                android:id="@+id/time"
+                android:id="@+id/sender_message_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
                 android:text="10:00"
-                android:textSize="9dp"
+                android:textSize="11sp"
                 tools:ignore="MissingConstraints"
 
                 />

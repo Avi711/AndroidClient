@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Chat"
-    android:orientation="vertical"
+    android:background="@drawable/chat_background"
     android:gravity="center"
-    android:background="@drawable/chat_background">
-
-
+    android:orientation="vertical"
+    tools:context=".Chat">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="6"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:background="@color/main_color">
 
 
@@ -35,10 +34,10 @@
             android:id="@+id/user_text_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/user_image_profile_image"
             app:layout_constraintTop_toTopOf="parent"
@@ -51,104 +50,134 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/messageList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="16dp"
-            tools:listitem="@layout/sender_message"
-
-            />
+            tools:listitem="@layout/sender_message" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/chat_bottom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:backgroundTint="@drawable/chat_background"
+            android:layout_height="80dp"
+            android:background="@drawable/chat_background"
             android:orientation="vertical"
-            android:paddingBottom="10dp"
+            android:paddingStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="ExtraText,MissingConstraints">
+            app:layout_constraintTop_toTopOf="@+id/messageList"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="ExtraText,MissingConstraints,RtlSymmetry">
 
 
             <EditText
                 android:id="@+id/editMsg"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:autofillHints="@string/type_msg"
                 android:background="@drawable/rounded_corners_reciever"
                 android:ems="10"
                 android:hint="@string/type_msg"
                 android:inputType="textPersonName"
-                android:textSize="30sp"
-
+                android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/PlusButton"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btn_mic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/purple_200"
-                android:clickable="true"
-                android:focusable="true"
-                android:tint="@android:color/white"
-                android:visibility="invisible"
 
-                app:layout_constraintBottom_toTopOf="@+id/PlusButton"
-                app:layout_constraintEnd_toEndOf="@+id/PlusButton"
-                app:srcCompat="@drawable/ic_baseline_mic_24"
-                tools:ignore="MissingConstraints" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/PlusButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:backgroundTint="@color/main_color"
                 android:clickable="true"
-                android:focusable="true"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editMsg"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_add_btn"
-                tools:layout_editor_absoluteX="317dp"
-                tools:layout_editor_absoluteY="767dp" />
+                android:focusable="true" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btn_pic"
+                android:id="@+id/send_message_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/purple_700"
                 android:clickable="true"
-                android:focusable="true"
-                android:tint="@android:color/white"
                 android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editMsg"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_send_message"
+                android:focusable="true" />
 
-                app:layout_constraintBottom_toTopOf="@+id/btn_mic"
-                app:layout_constraintEnd_toEndOf="@+id/btn_mic"
-                app:srcCompat="@drawable/ic_baseline_image_24" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btn_video"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/light_blue"
-                android:clickable="true"
-                android:focusable="true"
-                android:visibility="invisible"
-                android:tint="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@+id/btn_pic"
-                app:layout_constraintEnd_toEndOf="@+id/btn_pic"
-                app:srcCompat="@drawable/ic_baseline_videocam_24" />
+
+            <!--  <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                android:id="@+id/PlusButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:backgroundTint="@color/main_color"-->
+<!--                android:clickable="true"-->
+<!--                android:focusable="true"-->
+<!--                app:srcCompat="@drawable/ic_add_btn"-->
+<!--                tools:layout_editor_absoluteX="317dp"-->
+<!--                tools:layout_editor_absoluteY="767dp" />-->
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_mic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@android:color/white"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/chat_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_mic_24"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/purple_700"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@android:color/white"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/btn_mic"
+            app:layout_constraintEnd_toEndOf="@+id/btn_mic"
+            app:srcCompat="@drawable/ic_baseline_image_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/light_blue"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@android:color/white"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/btn_pic"
+            app:layout_constraintEnd_toEndOf="@+id/btn_pic"
+            app:srcCompat="@drawable/ic_baseline_videocam_24" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </LinearLayout>

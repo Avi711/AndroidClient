@@ -37,7 +37,7 @@ public class MessageAPI {
         webServiceAPI = retrofit.create(WebServiceAPI.class);
     }
 
-    public void GetAllMessages(String id) {
+    public void getAllMessages(String id) {
         Call<List<Message>> call = webServiceAPI.GetAllMessages(id);
         call.enqueue(new Callback<List<Message>>() {
             @Override
@@ -57,7 +57,7 @@ public class MessageAPI {
         });
     }
 
-    public void CreateMessage(String id, Message message) {
+    public void createMessage(String id, Message message) {
         Call<Void> call = webServiceAPI.CreateMessage(id, message);
         call.enqueue(new Callback<Void>() {
             @Override
