@@ -141,7 +141,7 @@ public class Chat extends AppCompatActivity {
 
     private void animationPlus() {
         if (isOpen) {
-            PlusButton.startAnimation(rotate_close_anim);
+            PlusButton.startAnimation(rotate_open_anim);
             btn_mic.startAnimation(to_bottom_anim);
             btn_pic.startAnimation(to_bottom_anim);
             btn_video.startAnimation(to_bottom_anim);
@@ -150,7 +150,7 @@ public class Chat extends AppCompatActivity {
             btn_video.setClickable(false);
             isOpen = false;
         } else {
-            PlusButton.startAnimation(rotate_open_anim);
+            PlusButton.startAnimation(rotate_close_anim);
             btn_mic.startAnimation(from_bottom_anim);
             btn_pic.startAnimation(from_bottom_anim);
             btn_video.startAnimation(from_bottom_anim);
