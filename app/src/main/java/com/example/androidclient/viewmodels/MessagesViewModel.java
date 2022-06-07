@@ -17,7 +17,7 @@ public class MessagesViewModel extends ViewModel {
         this.messages = mRepository.getAll();
     }
 
-    public LiveData<List<Message>> get() {return messages;}
+    public LiveData<List<Message>> get(String id) {return mRepository.get(id);}
 
     public void add(Message message) {mRepository.add(message);}
 

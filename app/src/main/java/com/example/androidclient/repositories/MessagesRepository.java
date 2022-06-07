@@ -44,6 +44,12 @@ public class MessagesRepository {
     }
     public LiveData<List<Message>> getAll() { return messageListData; }
 
+    public LiveData<List<Message>> get(String id) {
+        if (id == null) return null;
+        api.getAllMessages(id);
+        return messageListData;
+    }
+
     public void add (final Message message) {  }
 
     public void delete (final Message message) { }
