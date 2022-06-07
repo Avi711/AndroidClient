@@ -1,4 +1,4 @@
-package com.example.androidclient;
+package com.example.androidclient.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -6,7 +6,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import java.util.ArrayList;
+import com.example.androidclient.entities.Contact;
+
 import java.util.List;
 
 @Dao
@@ -20,18 +21,18 @@ public interface ContactDao {
     Contact get(int id);
 
     @Insert
-    void insert(Contact... contacts);
+    void insert(Contact... contact);
 
     @Insert
     void insert(List<Contact> list);
 
 
     @Update
-    void update(Contact... contacts);
+    void update(Contact... contact);
 
 
     @Delete
-    void delete(Contact... contacts);
+    void delete(Contact... contact);
 
     @Query("DELETE FROM contact")
     void clear();
