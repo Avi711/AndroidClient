@@ -19,7 +19,7 @@ public class ContactsViewModel extends ViewModel {
 
     public LiveData<List<Contact>> get() {return contacts;}
 
-    public void add(Contact contact) {mRepository.add(contact);}
+    public int add(Contact contact) {return mRepository.add(contact);}
 
     public void delete(Contact contact) {mRepository.delete(contact);}
 

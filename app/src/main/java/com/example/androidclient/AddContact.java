@@ -38,8 +38,19 @@ public class AddContact extends AppCompatActivity {
                 EditText et_server = findViewById(R.id.add_contact_server);
                 Contact contact = new Contact(et_username.getText().toString(), et_display.getText().toString(), et_server.getText().toString());
                 //contactDao.insert(contact);
-                viewModel.add(contact);
-                finish();
+                int res = viewModel.add(contact);
+                if(res == 400) {
+                    et_username.setError("Username doesn't exists in the server you entered");
+                }
+                else if(res == -1) {
+                    et_username.setError("Contact already exists, if you can't see please reload your contacts.");
+                }
+                else if(res != 201) {
+                    et_username.setError("Can't access server");
+                }
+                else {
+                    finish();
+                }
             }
         });
     }
