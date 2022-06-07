@@ -41,11 +41,15 @@ public class ContactsRepository {
     }
     public LiveData<List<Contact>> getAll() { return contactListData; }
 
-    public void add (final Contact contact) {
+    public int add (final Contact contact) {
         ContactInvitations contactInvitations = new ContactInvitations("avi77", contact.getId(), contact.getServer());
         int res = api.invitations(contactInvitations);
-        if(res == 201)
-            api.addContact(contact);
+        if(res == 201) {
+            res = api.addContact(contact);
+            if(res == 400)
+                res = -2;
+        }
+        return res;
     }
 
     public void delete (final Contact contact) {

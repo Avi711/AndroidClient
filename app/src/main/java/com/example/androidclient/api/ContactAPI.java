@@ -55,23 +55,27 @@ public class ContactAPI {
         });
     }
 
-    public void addContact(Contact contact) {
+    public int addContact(Contact contact) {
+        final int[] res = {0};
         Call<Void> call = webServiceAPI.CreateContact(contact);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Void contacts = response.body();
                 new Thread(() -> {
-                    dao.insert(contact);
+                    res[0] = response.code();
+                    if(response.code() == 201)
+                        dao.insert(contact);
                     //contactListData.postValue(response.body());
                     //ContactListData.ContactValue(dao.get());
                 }).start();
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-            }
+            public void onFailure(Call<Void> call, Throwable t) { res[0] = -1; }
         });
+        while(res[0] == 0);
+        return res[0];
     }
 
     public void DeleteContact(Contact contact) {
@@ -107,9 +111,7 @@ public class ContactAPI {
                 res[0] = -1;
             }
         });
-        while(res[0] == 0) {
-
-        }
+        while(res[0] == 0);
         return res[0];
     }
 }
