@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent I = new Intent(this, ContactList.class);
                 startActivity(I);
             }
+        });
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this,instanceIdResult -> {
+            String newToken = instanceIdResult.getToken();
         });
     }
     public int Validate() {

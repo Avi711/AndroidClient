@@ -20,7 +20,11 @@
             android:id="@+id/message_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="100dp">
+            android:paddingLeft="100dp"
+            android:layout_alignParentEnd="true"
+
+
+            >
 
             <TextView
                 android:id="@+id/receiver_message_content"
@@ -31,7 +35,7 @@
                 android:textSize="20sp"
                 android:background="@drawable/rounded_corners_reciever"
                 android:paddingLeft="3dp"
-                android:text="Hello, \nhow are you ?\nhh jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjyjjjj\njjjjjjjjjjjjjjjjjjjjoooooooooooooooyy\noooooooo"
+                android:text="Hello"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.068"
