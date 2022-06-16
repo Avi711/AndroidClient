@@ -19,6 +19,7 @@ import com.example.androidclient.R;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +42,6 @@ public class CustomListAdapter extends ArrayAdapter<Contact> {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.custom_list_item, parent, false);
         }
-
         ImageView imageView = convertView.findViewById(R.id.profile_image);
         TextView userName = convertView.findViewById(R.id.user_name);
         TextView lastMessage = convertView.findViewById(R.id.last_message);
@@ -50,8 +50,12 @@ public class CustomListAdapter extends ArrayAdapter<Contact> {
         imageView.setImageResource(R.drawable.profile2);
         userName.setText(user.getName());
         lastMessage.setText(user.getLast());
-        if(user.getLast() != null)
-            time.setText(user.getLastdate());
+        if(user.getLast() != null) {
+            LocalDateTime s = LocalDateTime.parse(user.getLastdate());
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm");
+            String stringTime = fmt.format(s);
+            time.setText(stringTime);
+        }
 
         return convertView;
     }
