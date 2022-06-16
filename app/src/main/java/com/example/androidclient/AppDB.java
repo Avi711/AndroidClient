@@ -10,7 +10,7 @@ import com.example.androidclient.dao.MessageDao;
 import com.example.androidclient.entities.Contact;
 import com.example.androidclient.entities.Message;
 
-@Database(entities = {Contact.class, Message.class}, version = 13)
+@Database(entities = {Contact.class, Message.class}, version = 27)
 public abstract class AppDB extends  RoomDatabase{
 
 

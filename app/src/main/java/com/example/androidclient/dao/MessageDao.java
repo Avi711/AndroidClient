@@ -36,4 +36,7 @@ public interface MessageDao {
 
     @Query("DELETE FROM message")
     void clear();
+
+    @Query("SELECT * FROM message WHERE userID == :UserID AND contactID == :ContactID")
+    List<Message> getSpecificsMessages(String UserID, String ContactID);
 }

@@ -8,6 +8,7 @@ import com.example.androidclient.dao.MessageDao;
 import com.example.androidclient.entities.Contact;
 import com.example.androidclient.entities.ContactInvitations;
 import com.example.androidclient.entities.Message;
+import com.example.androidclient.entities.User;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,12 +17,16 @@ public class MessagesRepository {
     private MessageDao dao;
     private MessageListData messageListData;
     private MessageAPI api;
+    User user;
+    String contactID;
 
-    public MessagesRepository() {
+    public MessagesRepository(User user, String contactID) {
         AppDB db = AppDB.getInstance();
+        this.user = user;
+        this.contactID = contactID;
         dao = db.messageDao();
         messageListData = new MessageListData();
-        api = new MessageAPI(messageListData, dao);
+        api = new MessageAPI(messageListData, dao, user);
     }
     class MessageListData extends MutableLiveData<List<Message>> {
         public MessageListData() {
@@ -50,8 +55,10 @@ public class MessagesRepository {
         return messageListData;
     }
 
-    public void add (final Message message) {  }
+    public void add (String id, Message message) {
+        api.createMessage(id, message);
+    }
 
-    public void delete (final Message message) { }
+    public void delete (Message message) { }
     public void reload () {  }
 }

@@ -10,7 +10,9 @@ import com.example.androidclient.R;
 import com.example.androidclient.WebServiceAPI;
 import com.example.androidclient.dao.MessageDao;
 import com.example.androidclient.entities.Message;
+import com.example.androidclient.entities.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import retrofit2.Call;
@@ -24,10 +26,12 @@ public class MessageAPI {
     private MessageDao dao;
     Retrofit retrofit;
     WebServiceAPI webServiceAPI;
+    private User user;
 
-    public MessageAPI(MutableLiveData<List<Message>> MessageListData, MessageDao dao) {
+    public MessageAPI(MutableLiveData<List<Message>> MessageListData, MessageDao dao, User user) {
         this.messageListData = MessageListData;
         this.dao = dao;
+        this.user = user;
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
@@ -38,15 +42,19 @@ public class MessageAPI {
     }
 
     public void getAllMessages(String id) {
-        Call<List<Message>> call = webServiceAPI.GetAllMessages(id);
+        Call<List<Message>> call = webServiceAPI.GetAllMessages(user.getToken(),id);
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 List<Message> messages = response.body();
+                List<Message> messages2 = new ArrayList<>();
+                //for(Message message : messages) {
+                //    messages2.add(new Message(message.getContent(),message.getTime(), message.isSent(), user.getUsername(), id));
+               // }
                 new Thread(() -> {
                     dao.clear();
                     dao.insert(messages);
-                    messageListData.postValue(response.body());
+                    messageListData.postValue(messages);
                     //MessageListData.MessageValue(dao.get());
                 }).start();
             }
@@ -58,14 +66,15 @@ public class MessageAPI {
     }
 
     public void createMessage(String id, Message message) {
-        Call<Void> call = webServiceAPI.CreateMessage(id, message);
+        Call<Void> call = webServiceAPI.CreateMessage(user.getToken(),id, message);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Void messages = response.body();
+                int code = response.code();
                 new Thread(() -> {
                     dao.insert(message);
-                    //messageListData.postValue(response.body());
+                    messageListData.postValue(dao.index());
                     //MessageListData.MessageValue(dao.get());
                 }).start();
             }

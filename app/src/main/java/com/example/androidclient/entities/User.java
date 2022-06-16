@@ -16,6 +16,13 @@ public class User {
     int isLogged;
     String token;
 
+    public User(@NonNull String username) {
+        Username = username;
+    }
+    public User(@NonNull String username, String password) {
+        Username = username;
+        Password = password;
+    }
     public User(@NonNull String username, String password, String displayName, String image) {
         Username = username;
         Password = password;
@@ -71,4 +78,5 @@ public class User {
     public void setImage(String image) {
         Image = image;
     }
+
 }
