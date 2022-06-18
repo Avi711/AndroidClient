@@ -55,8 +55,9 @@ public class MessagesRepository {
         return messageListData;
     }
 
-    public void add (String id, Message message) {
+    public void add (String id,String contactServer, Message message) {
         api.createMessage(id, message);
+        api.transfer(id, contactServer, message);
     }
 
     public void delete (Message message) { }

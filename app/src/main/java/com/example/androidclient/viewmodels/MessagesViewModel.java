@@ -20,7 +20,7 @@ public class MessagesViewModel extends ViewModel {
 
     public LiveData<List<Message>> get(String id) {return mRepository.get(id);}
 
-    public void add(String id, Message message) {mRepository.add(id, message);}
+    public void add(String id,String contactServer, Message message) {mRepository.add(id, contactServer, message);}
 
     public void delete(Message message) {mRepository.delete(message);}
 

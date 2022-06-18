@@ -9,6 +9,7 @@ import com.example.androidclient.MyApplication;
 import com.example.androidclient.R;
 import com.example.androidclient.WebServiceAPI;
 import com.example.androidclient.dao.MessageDao;
+import com.example.androidclient.entities.ContactTransfer;
 import com.example.androidclient.entities.Message;
 import com.example.androidclient.entities.User;
 
@@ -34,14 +35,24 @@ public class MessageAPI {
         this.user = user;
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
+                .baseUrl(MyApplication.context.getString(R.string.BaseUrl) + "/api/")
                 .callbackExecutor(Executors.newSingleThreadExecutor())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         webServiceAPI = retrofit.create(WebServiceAPI.class);
     }
 
+    public WebServiceAPI getContactWebServiceAPI(String server) {
+        retrofit = new Retrofit.Builder()
+                .baseUrl((server + "/api/"))
+                .callbackExecutor(Executors.newSingleThreadExecutor())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit.create(WebServiceAPI.class);
+    }
+
     public void getAllMessages(String id) {
+        //Call<List<Message>> call = getContactWebServiceAPI(user.getServer()).GetAllMessages(user.getToken(),id);
         Call<List<Message>> call = webServiceAPI.GetAllMessages(user.getToken(),id);
         call.enqueue(new Callback<List<Message>>() {
             @Override
@@ -66,6 +77,7 @@ public class MessageAPI {
     }
 
     public void createMessage(String id, Message message) {
+       // Call<Void> call = getContactWebServiceAPI(user.getServer()).CreateMessage(user.getToken(),id, message);
         Call<Void> call = webServiceAPI.CreateMessage(user.getToken(),id, message);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -75,6 +87,28 @@ public class MessageAPI {
                 new Thread(() -> {
                     dao.insert(message);
                     messageListData.postValue(dao.index());
+                    //MessageListData.MessageValue(dao.get());
+                }).start();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+            }
+        });
+    }
+
+    public void transfer(String id,String contactServer, Message message) {
+        ContactTransfer contactTransfer = new ContactTransfer(user.getUsername(), id, message.getContent());
+        //Call<Void> call = webServiceAPI.transfer(contactTransfer);
+        Call<Void> call = getContactWebServiceAPI(contactServer).transfer(contactTransfer);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Void messages = response.body();
+                int code = response.code();
+                new Thread(() -> {
+                    //dao.insert(message);
+                    //messageListData.postValue(dao.index());
                     //MessageListData.MessageValue(dao.get());
                 }).start();
             }

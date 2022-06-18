@@ -41,6 +41,7 @@ public class Chat extends AppCompatActivity {
     MessageListAdapter adapter;
     MessagesViewModel viewModel;
     String contactUserName;
+    String contactServer;
     User user;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -52,9 +53,11 @@ public class Chat extends AppCompatActivity {
         //viewModel = new ViewModelProvider(this).get(MessagesViewModel.class);
         Intent curIntent = getIntent();
         user = new User(curIntent.getStringExtra("userName"));
+        String us = curIntent.getStringExtra("userName");
         user.setToken(curIntent.getStringExtra("token"));
         Intent intent = getIntent();
         contactUserName = intent.getStringExtra("contactUserName");
+        contactServer = intent.getStringExtra("contactServer");
         viewModel = new MessagesViewModel(user, contactUserName);
 
         EditText editText = findViewById(R.id.editMsg);
@@ -112,7 +115,7 @@ public class Chat extends AppCompatActivity {
             String s = LocalDateTime.now().toString();
             Message message = new Message(editText.getText().toString(), s,true);
             editText.getText().clear();
-            viewModel.add(contactUserName,message);
+            viewModel.add(contactUserName,contactServer,message);
         });
 
 
