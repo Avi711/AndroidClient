@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -20,7 +21,11 @@ import com.example.androidclient.dao.ContactDao;
 import com.example.androidclient.entities.Contact;
 import com.example.androidclient.entities.User;
 import com.example.androidclient.viewmodels.ContactsViewModel;
+import com.example.androidclient.viewmodels.UsersViewModel;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
@@ -31,28 +36,9 @@ import java.util.List;
 
 public class ContactList extends AppCompatActivity {
 
-    final private int[] profilePictures = {
-            R.drawable.profile2, R.drawable.profile3, R.drawable.profile4,
-            R.drawable.profile2, R.drawable.profile3, R.drawable.profile4
-    };
-
-    final private String[] userNames = {
-            "Blue User", "Golden User", "Green User", "Red User", "Lightblue User", "Pink User"
-    };
-
-    final private String[] lastMassages = {
-            "Hi, how are you?", "24K Magic", "I'm GREEN!", "Red is my name", "wasap :)", "Yo!"
-    };
-
-    final private String[] times = {
-            "12:00", "00:30", "3:23", "8:59", "14:52", "12:23"
-    };
-
     ListView listView;
     CustomListAdapter adapter;
     List<Contact> contacts;
-    private AppDB db;
-    private ContactDao contactDao;
     private ContactsViewModel viewModel;
     private User user;
 
@@ -66,7 +52,12 @@ public class ContactList extends AppCompatActivity {
         Intent curIntent = getIntent();
         user = new User(curIntent.getStringExtra("userName"));
         user.setToken(curIntent.getStringExtra("token"));
+        user.setServer(getResources().getString(R.string.BaseUrl));
         viewModel = new ContactsViewModel(user);
+
+
+        UsersViewModel usersViewModel = UsersViewModel.getInstance();
+        usersViewModel.add(user);
 
 
         FloatingActionButton go_to_add_contact_btn = findViewById(R.id.go_to_add_contact_btn);
@@ -78,13 +69,20 @@ public class ContactList extends AppCompatActivity {
         });
 
 
-        for (int i = 0; i < profilePictures.length; i++) {
-            Contact aUser = new Contact(
-                    userNames[i],
-                    lastMassages[i], times[i]
-            );
-           // contacts.add(aUser);
-        }
+        FloatingActionButton settingButton = findViewById(R.id.setting_button);
+        settingButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this,SettingsActivity.class);
+            intent.putExtra("userName", user.getUsername());
+            startActivity(intent);
+        });
+
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(ContactList.this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                user.setFirebaseToken(instanceIdResult.getToken());
+            }
+        });
 
         listView = findViewById(R.id.contact_list);
         adapter = new CustomListAdapter(getApplicationContext(), contacts);
@@ -117,7 +115,8 @@ public class ContactList extends AppCompatActivity {
 
             Contact contact = contacts.get(i);
             intent.putExtra("contactUserName", contact.getId());
-            intent.putExtra("UserName", user.getUsername());
+            intent.putExtra("contactServer", contact.getServer());
+            intent.putExtra("userName", user.getUsername());
             intent.putExtra("token", user.getToken());
             //intent.putExtra("profilePicture", R.drawable.profile2);
             intent.putExtra("lastMassage", contact.getLast());

@@ -16,17 +16,15 @@
             android:id="@+id/contact_refresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <ListView
-            android:id="@+id/contact_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintVertical_weight="5"
-            tools:listitem="@layout/custom_list_item"
-            android:layout_weight="1">
-        </ListView>
+
+            <ListView
+                android:id="@+id/contact_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:layout_constraintVertical_weight="5"
+                tools:listitem="@layout/custom_list_item"></ListView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
 
 
     </LinearLayout>
@@ -45,6 +43,23 @@
         android:backgroundTint="@color/main_color"
         android:tint="@color/white"
         android:contentDescription="@string/add_contact_button"/>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/setting_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_settings_btn"
+        android:focusable="true"
+        android:backgroundTint="@color/main_color"
+        android:tint="@color/white"
+        android:contentDescription="@string/settings_button"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

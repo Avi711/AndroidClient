@@ -2,6 +2,7 @@ package com.example.androidclient.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
@@ -13,16 +14,25 @@ public class User {
     private String Password;
     private String DisplayName;
     private String Image;
+    private String Server;
     int isLogged;
     String token;
+    String FirebaseToken;
 
-    public User(@NonNull String username) {
+    public User() {
+
+    }
+
+    public User(String username) {
         Username = username;
     }
+    @Ignore
     public User(@NonNull String username, String password) {
         Username = username;
         Password = password;
     }
+
+    @Ignore
     public User(@NonNull String username, String password, String displayName, String image) {
         Username = username;
         Password = password;
@@ -78,5 +88,22 @@ public class User {
     public void setImage(String image) {
         Image = image;
     }
+
+    public String getFirebaseToken() {
+        return FirebaseToken;
+    }
+
+    public void setFirebaseToken(String firebaseToken) {
+        FirebaseToken = firebaseToken;
+    }
+
+    public String getServer() {
+        return Server;
+    }
+
+    public void setServer(String server) {
+        Server = server;
+    }
+
 
 }

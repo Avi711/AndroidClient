@@ -23,7 +23,7 @@ public class UserAPI {
 
     public UserAPI() {
         retrofit = new Retrofit.Builder()
-                .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
+                .baseUrl(MyApplication.context.getString(R.string.BaseUrl) + "/api/")
                 .callbackExecutor(Executors.newSingleThreadExecutor())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

@@ -35,7 +35,7 @@ public class ContactAPI {
         this.dao = dao;
         this.user = user;
         retrofit = new Retrofit.Builder()
-                .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
+                .baseUrl(MyApplication.context.getString(R.string.BaseUrl) + "/api/")
                 .callbackExecutor(Executors.newSingleThreadExecutor())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -44,7 +44,7 @@ public class ContactAPI {
 
     public WebServiceAPI getContactWebServiceAPI(String server) {
         retrofit = new Retrofit.Builder()
-                .baseUrl(("http://" + server + "/api/"))
+                .baseUrl((server + "/api/"))
                 .callbackExecutor(Executors.newSingleThreadExecutor())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -53,6 +53,7 @@ public class ContactAPI {
 
     public void getAllContacts() {
         Call<List<Contact>> call = webServiceAPI.GetAllContacts(user.getToken());
+        //Call<List<Contact>> call = getContactWebServiceAPI(user.getServer()).GetAllContacts(user.getToken());
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
@@ -72,6 +73,8 @@ public class ContactAPI {
 
     public void addContact(Contact contact, CallBackListener listener) {
         Call<Void> call = webServiceAPI.CreateContact(user.getToken(),contact);
+        //Call<Void> call = getContactWebServiceAPI(user.getServer()).CreateContact(user.getToken(),contact);
+
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -97,6 +100,7 @@ public class ContactAPI {
 
     public void DeleteContact(Contact contact) {
         Call<Void> call = webServiceAPI.DeleteContact(user.getToken(), contact.getId());
+        //Call<Void> call = getContactWebServiceAPI(user.getServer()).DeleteContact(user.getToken(), contact.getId());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

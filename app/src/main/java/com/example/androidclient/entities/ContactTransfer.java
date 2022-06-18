@@ -3,12 +3,12 @@ package com.example.androidclient.entities;
 public class ContactTransfer {
     private String from;
     private String to;
-    private String server;
+    private String content;
 
-    public ContactTransfer(String from, String to, String server) {
+    public ContactTransfer(String from, String to, String content) {
         this.from = from;
         this.to = to;
-        this.server = server;
+        this.content = content;
     }
 
 
@@ -28,12 +28,12 @@ public class ContactTransfer {
         this.to = to;
     }
 
-    public String getServer() {
-        return server;
+    public String getContent() {
+        return content;
     }
 
-    public void setServer(String server) {
-        this.server = server;
+    public void setContent(String content) {
+        this.content = content;
     }
 }
 
