@@ -76,14 +76,6 @@ public class ContactList extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(ContactList.this, new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                user.setFirebaseToken(instanceIdResult.getToken());
-            }
-        });
-
         listView = findViewById(R.id.contact_list);
         adapter = new CustomListAdapter(getApplicationContext(), contacts);
         listView.setAdapter(adapter);
@@ -112,6 +104,8 @@ public class ContactList extends AppCompatActivity {
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             Intent intent = new Intent(getApplicationContext(), Chat.class);
+
+
 
             Contact contact = contacts.get(i);
             intent.putExtra("contactUserName", contact.getId());
