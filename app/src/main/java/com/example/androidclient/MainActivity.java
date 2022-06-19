@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     UserAPI userAPI;
     EditText tvContact_username;
     EditText tv_password;
+    String fireBaseToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +37,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                fireBaseToken = (instanceIdResult.getToken());
+            }
+        });
+
+
         Button loginBtn = findViewById(R.id.login_Button);
         loginBtn.setOnClickListener(p -> {
             if (Validate() == 0) {
                 Intent intent = new Intent(this, ContactList.class);
                 User user = new User(tvContact_username.getText().toString(), tv_password.getText().toString());
+                user.setFirebaseToken(fireBaseToken);
                 userAPI.login(user);
                 while (user.getToken() == null) {
                 }
